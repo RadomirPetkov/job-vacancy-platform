@@ -1,242 +1,31 @@
+import { Navbar } from "./components/Navbar/Navbar";
+import { Heading } from "./components/Home/Heading/Heading";
+import { JobOffers } from "./components/Home/JobOffers/JobOffers";
 
 function App() {
   return (
     <div className="App">
       <>
-       
-        {/* Top Background Image Wrapper */}
-        <div
-          className="bgded overlay"
-          style={{ backgroundImage: 'url("images/demo/backgrounds/01.jpg")' }}
-        >
-          
-          <div className="wrapper row0">
-            <div id="topbar" className="hoc clear">
-              <div className="fl_left">
-                
-                <ul className="nospace">
-                  <li>
-                    <i className="fas fa-phone rgtspace-5" /> +00 (123) 456 7890
-                  </li>
-                  <li>
-                    <i className="far fa-envelope rgtspace-5" /> info@domain.com
-                  </li>
-                </ul>
-                
-              </div>
-              <div className="fl_right">
-                
-                <ul className="nospace">
-                  <li>
-                    <a href="index.html">
-                      <i className="fas fa-home" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" title="Help Centre">
-                      <i className="far fa-life-ring" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" title="Login">
-                      <i className="fas fa-sign-in-alt" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" title="Sign Up">
-                      <i className="fas fa-edit" />
-                    </a>
-                  </li>
-                  <li id="searchform">
-                    <div>
-                      <form action="#" method="post">
-                        <fieldset>
-                          <legend>Quick Search:</legend>
-                          <input type="text" placeholder="Enter search term…" />
-                          <button type="submit">
-                            <i className="fas fa-search" />
-                          </button>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </li>
-                </ul>
-           
-              </div>
-            </div>
-          </div>
-         
-          <div className="wrapper row1">
-            <header id="header" className="hoc clear">
-              <div id="logo" className="fl_left">
-             
-                <h1>
-                  <a href="index.html">Home</a>
-                </h1>
-         
-              </div>
-              <nav id="mainav" className="fl_right">
-         
-                <ul className="clear">
-                  <li className="active">
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li>
-                    <a className="drop" href="#">
-                      Pages
-                    </a>
-                    <ul>
-                      <li>
-                        <a href="pages/gallery.html">Gallery</a>
-                      </li>
-                      <li>
-                        <a href="pages/full-width.html">Full Width</a>
-                      </li>
-                      <li>
-                        <a href="pages/sidebar-left.html">Sidebar Left</a>
-                      </li>
-                      <li>
-                        <a href="pages/sidebar-right.html">Sidebar Right</a>
-                      </li>
-                      <li>
-                        <a href="pages/basic-grid.html">Basic Grid</a>
-                      </li>
-                      <li>
-                        <a href="pages/font-icons.html">Font Icons</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a className="drop" href="#">
-                      Dropdown
-                    </a>
-                    <ul>
-                      <li>
-                        <a href="#">Level 2</a>
-                      </li>
-                      <li>
-                        <a className="drop" href="#">
-                          Level 2 + Drop
-                        </a>
-                        <ul>
-                          <li>
-                            <a href="#">Level 3</a>
-                          </li>
-                          <li>
-                            <a href="#">Level 3</a>
-                          </li>
-                          <li>
-                            <a href="#">Level 3</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Level 2</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="#">Link Text</a>
-                  </li>
-                  <li>
-                    <a href="#">Link Text</a>
-                  </li>
-                  <li>
-                    <a href="#">Link Text</a>
-                  </li>
-                </ul>
-            
-              </nav>
-            </header>
-          </div>
-      
-      
-      
-          <div id="pageintro" className="hoc clear">
-        
-            <article>
-              <h3 className="heading">Finibus dictum lobortis</h3>
-              <p>
-                Libero sed ullamcorper nibh dignissim et curabitur cursus scelerisque
-                metus sit amet sodales justo auctor sit amet proin quis lacus non
-                nisi.
-              </p>
-              <footer>
-                <ul className="nospace inline pushright">
-                  <li>
-                    <a className="btn" href="#">
-                      Pharetra etiam
-                    </a>
-                  </li>
-                  <li>
-                    <a className="btn inverse" href="#">
-                      Sagittis massa
-                    </a>
-                  </li>
-                </ul>
-              </footer>
-            </article>
-            
-          </div>
-          
-        </div>
-        {/* End Top Background Image Wrapper */}
-        
-        
-        
+        <Navbar />
+        <Heading />
+
+
+
         <div className="wrapper row3">
+          <hr className="btmspace-50" />
+          <h3 className="test">Our latest offers:</h3>
+          <hr className="btmspace-100" />
           <main className="hoc container clear">
+
             {/* main body */}
-            
-            <section id="introblocks">
-              <ul className="nospace group btmspace-80">
-                <li className="one_third first">
-                  <figure>
-                    <a className="imgover" href="#">
-                      <img src="images/demo/348x261.png" alt="" />
-                    </a>
-                    <figcaption>
-                      <h6 className="heading">Viverra congue</h6>
-                      <p>
-                        Aenean metus purus consectetur ac sagittis in malesuada quis
-                        nunc ut sed risus nulla etiam gravida velit.
-                      </p>
-                    </figcaption>
-                  </figure>
-                </li>
-                <li className="one_third">
-                  <figure>
-                    <a className="imgover" href="#">
-                      <img src="images/demo/348x261.png" alt="" />
-                    </a>
-                    <figcaption>
-                      <h6 className="heading">Libero sodales</h6>
-                      <p>
-                        Nec tincidunt maximus ex orci sollicitudin metus ut lacinia
-                        ligula nisi vel neque sed non quam eleifend.
-                      </p>
-                    </figcaption>
-                  </figure>
-                </li>
-                <li className="one_third">
-                  <figure>
-                    <a className="imgover" href="#">
-                      <img src="images/demo/348x261.png" alt="" />
-                    </a>
-                    <figcaption>
-                      <h6 className="heading">Laoreet tortor</h6>
-                      <p>
-                        Pharetra etiam ut nisi non mi scelerisque consectetur maecenas
-                        vel elementum lectus cras maximus finibus.
-                      </p>
-                    </figcaption>
-                  </figure>
-                </li>
-              </ul>
-            </section>
-            
+
+            <JobOffers />
+
+
+
+
             <hr className="btmspace-80" />
-            
+
             <section id="overview">
               <div className="sectiontitle">
                 <p className="nospace font-xs">Integer facilisis enim sollicitudin</p>
@@ -292,14 +81,14 @@ function App() {
                 </a>
               </footer>
             </section>
-            
+
             {/* / main body */}
             <div className="clear" />
           </main>
         </div>
-        
-        
-        
+
+
+
         <div
           className="bgded overlay"
           style={{ backgroundImage: 'url("images/demo/backgrounds/02.png")' }}
@@ -313,7 +102,7 @@ function App() {
               className="bgded clear"
               style={{ backgroundImage: 'url("images/demo/backgrounds/03.png")' }}
             >
-              
+
               <article>
                 <h6 className="heading font-x2">Tellus nec mollis sem</h6>
                 <p>
@@ -328,16 +117,16 @@ function App() {
                   </a>
                 </footer>
               </article>
-              
+
             </div>
           </section>
         </div>
-        
-        
-        
+
+
+
         <div className="wrapper row2">
           <div className="hoc container clear">
-            
+
             <div className="sectiontitle">
               <p className="nospace font-xs">Id elementum lobortis justo donec</p>
               <p className="heading underline font-x2">Rutrum sed ligula viverra</p>
@@ -384,15 +173,15 @@ function App() {
                 </figure>
               </li>
             </ul>
-            
+
           </div>
         </div>
-        
-        
-        
+
+
+
         <div className="wrapper row3">
           <section className="hoc container clear">
-            
+
             <div className="sectiontitle">
               <p className="nospace font-xs">Nisl vitae mauris ipsum eget</p>
               <p className="heading underline font-x2">Tincidunt elit velit auctor</p>
@@ -427,18 +216,18 @@ function App() {
                 <p>Curabitur sodales</p>
               </li>
             </ul>
-            
+
           </section>
         </div>
-        
-        
-        
+
+
+
         <div
           className="wrapper bgded"
           style={{ backgroundImage: 'url("images/demo/backgrounds/04.png")' }}
         >
           <section id="testimonials" className="hoc clear">
-            
+
             <div className="one_half overlay">
               <ul className="nospace">
                 <li>
@@ -465,15 +254,15 @@ function App() {
                 </li>
               </ul>
             </div>
-            
+
           </section>
         </div>
-        
-        
-        
+
+
+
         <div className="wrapper row3">
           <section className="hoc container clear">
-            
+
             <div className="sectiontitle">
               <p className="nospace font-xs">Luctus ligula lacus non odio nunc</p>
               <p className="heading underline font-x2">Faucibus libero risus</p>
@@ -570,18 +359,18 @@ function App() {
                 </article>
               </li>
             </ul>
-            
+
           </section>
         </div>
-        
-        
-        
+
+
+
         <div
           className="bgded overlay row4"
           style={{ backgroundImage: 'url("images/demo/backgrounds/05.png")' }}
         >
           <footer id="footer" className="hoc clear">
-            
+
             <div className="center btmspace-50">
               <h6 className="heading">Sislaf</h6>
               <ul className="faico clear">
@@ -621,9 +410,9 @@ function App() {
                 elit.
               </p>
             </div>
-            
+
             <hr className="btmspace-50" />
-            
+
             <div className="group btmspace-50">
               <div className="one_quarter first">
                 <h6 className="heading">Erat adipiscing metus</h6>
@@ -753,7 +542,7 @@ function App() {
                   </li>
                 </ul>
               </div>
-              
+
             </div>
             <div id="ctdetails" className="clear">
               <ul className="nospace clear">
@@ -800,15 +589,15 @@ function App() {
                 </li>
               </ul>
             </div>
-            
+
           </footer>
         </div>
-        
-        
-        
+
+
+
         <div className="wrapper row5">
           <div id="copyright" className="hoc clear">
-            
+
             <p className="fl_left">
               Copyright © 2018 - All Rights Reserved - <a href="#">Domain Name</a>
             </p>
@@ -822,12 +611,12 @@ function App() {
                 OS Templates
               </a>
             </p>
-            
+
           </div>
         </div>
-        
-        
-        
+
+
+
         <a id="backtotop" href="#top">
           <i className="fas fa-chevron-up" />
         </a>
