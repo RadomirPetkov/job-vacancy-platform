@@ -5,6 +5,7 @@ import { Catalog } from "./components/Catalog/Catalog";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register.js"
 
+
 function App() {
   return (
 

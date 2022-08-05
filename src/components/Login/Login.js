@@ -1,10 +1,14 @@
-import { useState } from "react"
+import { useState } from 'react'
 import "./Login.css"
+import * as requester from "../../services/requester"
+
+
 export const Login = () => {
     const [userData, setUserData] = useState({
         email: '',
         password: '',
     })
+    const [error, setError] = useState(false)
 
     const changeHandler = (e) => {
         setUserData((oldstate) => ({
@@ -13,16 +17,23 @@ export const Login = () => {
     }
 
 
-
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(userData);
+        try {
+            const res = await requester.post(`/users/login`, userData)
+            
+        } catch (error) {
+           
+            setError(true)
 
+        }
 
     }
     return <div className="registration-body">
         <div className="main-login-block">
             <h1 className="registration-header">Login</h1>
+            {error ? <p>Wrong email or password</p> : ""}
+
             <form id="login-form" action="/" onSubmit={submitHandler}>
                 <hr />
 

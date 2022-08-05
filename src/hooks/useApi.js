@@ -6,13 +6,12 @@ export const useApi = (method, url, data) => {
     const baseUrl = `http://localhost:3030`
 
 
-    const fetchApiGet = () => {
+    const fetchApiGet = (link) => {
         fetch(`${baseUrl}${url}`)
             .then(response => {
                 return response.json()
             })
             .then(json => {
-                console.log(json);
                 setLoading(false)
                 setResponseData(json)
             })
@@ -42,7 +41,7 @@ export const useApi = (method, url, data) => {
         }
     }, []);
 
-    return { loading, responseData }
+    return { loading, responseData, fetchApiGet }
 }
 
 export const get = useApi.bind(`GET`)
