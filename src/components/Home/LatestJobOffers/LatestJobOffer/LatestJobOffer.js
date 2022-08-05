@@ -1,11 +1,8 @@
 
 
-export const JobOffer = ({ offer }) => {
+export const LatestJobOffer = ({ offer }) => {
 
-    console.log(offer);
-    console.log(`123`);
-
-    return <li className="one_third">
+       return <li className="one_third">
         <figure>
             <a className="imgover offerImg" href="#">
                 <img src={offer.imageUrl} alt="" />
