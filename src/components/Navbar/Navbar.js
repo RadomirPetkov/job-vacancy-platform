@@ -4,7 +4,7 @@ import { AuthContext } from '../../contexts/authContext'
 
 export const Navbar = () => {
     const { user } = useContext(AuthContext)
-    
+
     return <div className="wrapper row1">
         <header id="header" className="hoc clear">
             <div id="logo" className="fl_left">
@@ -20,16 +20,25 @@ export const Navbar = () => {
                     <li className="active">
                         <Link to="/catalog">Catalog</Link>
                     </li>
+                    {user ? <>
+                        <li>
+                            <Link to="/">Create offer</Link>
+                        </li>
+                        <li>
+                            <Link to="/logout">Logout</Link>
+                        </li>
 
-                    <li>
-                        <Link to="/register">Register</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Create offer</Link>
-                    </li>
+                    </>
+                        : <><li>
+                            <Link to="/register">Register</Link>
+                        </li>
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+
+                        </>}
+
+
 
                 </ul>
 
