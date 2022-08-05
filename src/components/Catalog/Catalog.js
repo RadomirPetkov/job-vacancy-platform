@@ -3,7 +3,7 @@ import { JobOffer } from './JonOffer/JobOffer';
 
 export const Catalog = () => {
 
-    const { loading, data } = useApi.get(`GET`, `/data/jobOffers`)
+    const { loading, responseData } = useApi.get(`GET`, `/data/jobOffers`)
 
     return <div className="wrapper row3">
         <section className="hoc container clear">
@@ -14,7 +14,7 @@ export const Catalog = () => {
             </div>
             <ul id="latest" className="nospace group">
 
-                {loading ? <h1>Loading</h1> : data.map(offer => <JobOffer key={offer._id} offer={offer} />)}
+                {loading ? <h1>Loading</h1> : responseData.map(offer => <JobOffer key={offer._id} offer={offer} />)}
               
 
             </ul>

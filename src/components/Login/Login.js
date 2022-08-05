@@ -3,10 +3,7 @@ import "./Login.css"
 export const Login = () => {
     const [userData, setUserData] = useState({
         email: '',
-        name: '',
         password: '',
-        accountType: 'jobseeker',
-        gender: ""
     })
 
     const changeHandler = (e) => {
@@ -15,49 +12,20 @@ export const Login = () => {
         }))
     }
 
-    const radioChangeHandler = (e) => {
-        setUserData((oldState) => ({
-            ...oldState, [e.target.name]: e.target.id
-        }))
 
-
-    }
 
     const submitHandler = (e) => {
         e.preventDefault()
         console.log(userData);
+
+
     }
     return <div className="registration-body">
         <div className="main-login-block">
-            <h1 className="registration-header">Registration</h1>
+            <h1 className="registration-header">Login</h1>
             <form id="login-form" action="/" onSubmit={submitHandler}>
                 <hr />
 
-                <div className="account-type">
-                    <input
-                        type="radio"
-                        id="jobseeker"
-                        name="accountType"
-                        // checked={userData.accountType == 'jobseeker' ? 'checked' : ''}
-                        onChange={radioChangeHandler}
-
-                    />
-                    <label htmlFor="jobseeker" className="radio">
-                        Jobseeker
-                    </label>
-
-                    <input
-                        type="radio"
-                        defaultValue="none"
-                        id="company"
-                        name="accountType"
-                        // checked={userData.accountType == 'company' ? 'checked' : ''}
-                        onChange={radioChangeHandler}
-                    />
-                    <label htmlFor="company" className="radio">
-                        Company
-                    </label>
-                </div>
                 <hr />
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-envelope" />
@@ -71,18 +39,7 @@ export const Login = () => {
                     value={userData.email}
                     onChange={changeHandler} />
 
-                <label id="icon" htmlFor="name">
-                    <i className="fas fa-user" />
-                </label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Name"
-                    required=""
-                    value={userData.name}
-                    onChange={changeHandler}
-                />
+
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-unlock-alt" />
                 </label>
@@ -97,29 +54,6 @@ export const Login = () => {
                     onChange={changeHandler}
                 />
                 <hr />
-                {userData.accountType === "jobseeker" && <><div className="gender">
-                    <input
-                        type="radio"
-                        defaultValue="none"
-                        id="male"
-                        name="gender"
-                        onChange={radioChangeHandler}
-                    />
-
-                    <><label htmlFor="male" className="radio" >
-                        Male
-                    </label>
-                        <input 
-                        type="radio" 
-                        defaultValue="none" 
-                        id="female" 
-                        name="gender" 
-                        onChange={radioChangeHandler} />
-                        
-                        <label htmlFor="female" className="radio">
-                            Female
-                        </label></>
-                </div></>}
 
 
                 <hr />

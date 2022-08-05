@@ -1,27 +1,48 @@
 import { useEffect, useState } from "react"
 
-export const useApi = (method, url) => {
-    const [data, setData] = useState(null)
+export const useApi = (method, url, data) => {
+    const [responseData, setResponseData] = useState(null)
     const [loading, setLoading] = useState(true)
     const baseUrl = `http://localhost:3030`
 
 
-    const fetchApi = () => {
+    const fetchApiGet = () => {
         fetch(`${baseUrl}${url}`)
             .then(response => {
                 return response.json()
             })
             .then(json => {
+                console.log(json);
                 setLoading(false)
-                setData(json)
+                setResponseData(json)
             })
     };
 
+    const fetchApiPost = (data) => {
+        let headers = {
+            "content-type": "application/json",
+        }
+        let accessToken = false
+        if (accessToken) {
+            headers["X-Authorization"] = accessToken
+        }
+
+        fetch(`${baseUrl}${url}`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify(data)
+        })
+    }
+
     useEffect(() => {
-        fetchApi();
+        if (method == "GET") {
+            fetchApiGet();
+        } else if (method == "POST") {
+            fetchApiPost(data)
+        }
     }, []);
 
-    return { loading, data }
+    return { loading, responseData }
 }
 
 export const get = useApi.bind(`GET`)
