@@ -26,7 +26,7 @@ export const Register = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log(userData);
+        
     }
 
     return <div className="registration-body">

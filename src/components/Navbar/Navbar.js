@@ -1,8 +1,10 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/authContext'
 
 export const Navbar = () => {
-
-
+    const { user } = useContext(AuthContext)
+    
     return <div className="wrapper row1">
         <header id="header" className="hoc clear">
             <div id="logo" className="fl_left">
@@ -28,9 +30,15 @@ export const Navbar = () => {
                     <li>
                         <Link to="/">Create offer</Link>
                     </li>
+
                 </ul>
 
             </nav>
+            {user && <><p className='nav-profile'>Hello, {user?.name}!</p>
+                <Link className='nav-profile-pic' to={`/profile/${user._id}`}><img src='https://p.kindpng.com/picc/s/24-248253_user-profile-default-image-png-clipart-png-download.png' alt="" /></Link>
+            </>}
         </header>
+
+
     </div>
 }

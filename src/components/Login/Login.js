@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import "./Login.css"
 import * as requester from "../../services/requester"
-
+import { AuthContext } from '../../contexts/authContext'
+import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
+    const navigate = useNavigate()
     const [userData, setUserData] = useState({
         email: '',
         password: '',
     })
     const [error, setError] = useState(false)
+    const { setUser, saveUserToLocalStorage } = useContext(AuthContext)
 
     const changeHandler = (e) => {
         setUserData((oldstate) => ({
@@ -20,10 +23,13 @@ export const Login = () => {
     const submitHandler = async (e) => {
         e.preventDefault()
         try {
-            const res = await requester.post(`/users/login`, userData)
-            
+            const user = await requester.post(`/users/login`, userData)
+            saveUserToLocalStorage(user)
+            setUser(user)
+            navigate(`/`)
+
         } catch (error) {
-           
+
             setError(true)
 
         }

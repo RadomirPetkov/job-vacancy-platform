@@ -451,8 +451,7 @@ section {
 .two_third,
 .one_quarter,
 .two_quarter,
-.three_quarter
-.one_fifth {
+.three_quarter .one_fifth {
     display: inline-block;
     float: left;
     margin: 0 0 0 4.21052%;
@@ -564,3 +563,17 @@ section {
     padding: 30px;
 }
 
+.nav-profile {
+    position: absolute;
+    right: 6%;
+    margin-top: 20px;
+    width: 150px;
+    height: 40px;
+}
+.nav-profile-pic {
+    position: absolute;
+    right: 2%;
+    margin-top: 10px;
+    width: 70px;
+    height: 60px;
+}
