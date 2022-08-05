@@ -2,15 +2,16 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Routes, Route } from 'react-router-dom'
 import { Home } from "./components/Home/Home";
 import { Catalog } from "./components/Catalog/Catalog";
+import { Login } from "./components/Login/Login";
 function App() {
   return (
-    <div className="App">
+    
       <>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/catalog" element={<Catalog />}></Route>
-
+          <Route path="/login" element={<Login />}></Route>
         </Routes>
 
 
@@ -20,7 +21,6 @@ function App() {
         <script src="layout/scripts/jquery.mobilemenu.js"></script>
       </>
 
-    </div>
   );
 }
 
