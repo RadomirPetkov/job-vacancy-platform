@@ -15,16 +15,22 @@ export const Login = () => {
         }))
     }
 
-    const radioChangeHandler = (e) =>{
-        setUserData((oldState)=> ({
-            ...oldState, [e.target.name]:e.target.id
+    const radioChangeHandler = (e) => {
+        setUserData((oldState) => ({
+            ...oldState, [e.target.name]: e.target.id
         }))
+
+
     }
 
+    const submitHandler = (e) => {
+        e.preventDefault()
+        console.log(userData);
+    }
     return <div className="registration-body">
         <div className="main-login-block">
             <h1 className="registration-header">Registration</h1>
-            <form id="login-form" action="/">
+            <form id="login-form" action="/" onSubmit={submitHandler}>
                 <hr />
 
                 <div className="account-type">
@@ -32,8 +38,8 @@ export const Login = () => {
                         type="radio"
                         id="jobseeker"
                         name="accountType"
-                    // checked={userData.accountType == 'jobseeker' ? 'checked' : ''}
-                    onChange={radioChangeHandler}
+                        // checked={userData.accountType == 'jobseeker' ? 'checked' : ''}
+                        onChange={radioChangeHandler}
 
                     />
                     <label htmlFor="jobseeker" className="radio">
@@ -45,8 +51,8 @@ export const Login = () => {
                         defaultValue="none"
                         id="company"
                         name="accountType"
-                    // checked={userData.accountType == 'company' ? 'checked' : ''}
-                    onChange={radioChangeHandler}
+                        // checked={userData.accountType == 'company' ? 'checked' : ''}
+                        onChange={radioChangeHandler}
                     />
                     <label htmlFor="company" className="radio">
                         Company
@@ -68,34 +74,54 @@ export const Login = () => {
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-user" />
                 </label>
-                <input type="text" name="name" id="account" placeholder="Name" required="" />
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    required=""
+                    value={userData.name}
+                    onChange={changeHandler}
+                />
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-unlock-alt" />
                 </label>
+
                 <input
                     type="password"
                     name="name"
                     id="password"
                     placeholder="Password"
                     required=""
+                    value={userData.password}
+                    onChange={changeHandler}
                 />
                 <hr />
-                <div className="gender">
+                {userData.accountType === "jobseeker" && <><div className="gender">
                     <input
                         type="radio"
                         defaultValue="none"
                         id="male"
                         name="gender"
-
+                        onChange={radioChangeHandler}
                     />
-                    <label htmlFor="male" className="radio" >
+
+                    <><label htmlFor="male" className="radio" >
                         Male
                     </label>
-                    <input type="radio" defaultValue="none" id="female" name="gender" />
-                    <label htmlFor="female" className="radio">
-                        Female
-                    </label>
-                </div>
+                        <input 
+                        type="radio" 
+                        defaultValue="none" 
+                        id="female" 
+                        name="gender" 
+                        onChange={radioChangeHandler} />
+                        
+                        <label htmlFor="female" className="radio">
+                            Female
+                        </label></>
+                </div></>}
+
+
                 <hr />
                 <div className="btn-block">
                     <p className="registration-par">
