@@ -8,11 +8,12 @@ import { AuthContext } from "./contexts/authContext"
 import { saveUserToLocalStorage } from "./services/authService"
 import { useState } from "react"
 import { useSetUser } from "./hooks/useSetUser";
+import { Logout } from "./components/Logout/Logout";
 
 
 function App() {
   const [user, setUser] = useSetUser()
-  
+
   return (
     <AuthContext.Provider value={{ user, setUser, saveUserToLocalStorage }}>
       <>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/catalog" element={<Catalog />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/logout" element={<Logout />}></Route>
         </Routes>
 
 
