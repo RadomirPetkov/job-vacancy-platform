@@ -9,6 +9,7 @@ import { saveUserToLocalStorage } from "./services/authService"
 import { useState } from "react"
 import { useSetUser } from "./hooks/useSetUser";
 import { Logout } from "./components/Logout/Logout";
+import { CreateOffer } from "./components/CreateOffer/CreateOffer";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/catalog" element={<Catalog />}></Route>
+          <Route path="/create" element={<CreateOffer />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/logout" element={<Logout />}></Route>

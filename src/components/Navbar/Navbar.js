@@ -22,7 +22,7 @@ export const Navbar = () => {
                     </li>
                     {user ? <>
                         {user.accountType == "company" && <li>
-                            <Link to="/">Create offer</Link>
+                            <Link to="/create">Create offer</Link>
                         </li>}
                         <li>
                             <Link to={`/profile/${user._id}`}>My profile</Link>
