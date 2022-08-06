@@ -24,7 +24,7 @@
   border-radius: 50px;
   box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
 }
-#description,
+#summary,
 #requirements {
   width: 100%;
   min-width: 20vw;
@@ -43,4 +43,8 @@
 
 .create-company {
   text-align: left;
+}
+
+#company-name {
+  text-decoration: underline;
 }
