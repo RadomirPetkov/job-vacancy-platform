@@ -6,8 +6,17 @@ import * as requester from "../../services/requester"
 
 export const Details = () => {
     const { user } = useContext(AuthContext)
+    const [currentUser, setCurrentUser] = useState('')
     const { offerId } = useParams()
     const [offer, setOffer] = useState({})
+
+    useEffect(() => {
+        if (user) {
+            user.accountType == "jobseeker" ? setCurrentUser("jobseeker") : setCurrentUser("company")
+        }
+    }, [])
+
+
 
     useEffect(() => {
         requester.get(`/data/jobOffers/${offerId}`)
@@ -15,8 +24,8 @@ export const Details = () => {
 
 
     }, [])
-    console.log(offer);
-    return <div
+
+      return <div
         className="bgded overlay"
         style={{ backgroundImage: 'url("images/demo/backgrounds/02.png")' }}
     >
@@ -41,10 +50,22 @@ export const Details = () => {
                     <p> {offer.salary}</p>
                     <h5>Available possitions:</h5>
                     <p> There are currently {offer.vacancies} available possitions</p>
+
+
                     <footer>
-                        <a className="btn" href="#">
-                            Fermentum felis
-                        </a>
+                        {
+                            currentUser == "company" && user?._id == offer?._ownerId && <><a className="btn" href="#">
+                                Edit
+                            </a>
+                                <a className="btn" href="#">
+                                    Delete
+                                </a></>
+
+                        }
+                        {currentUser == "jobseeker" && <a className="btn" href="#">
+                            Apply
+                        </a>}
+
                     </footer>
                 </article>
 
