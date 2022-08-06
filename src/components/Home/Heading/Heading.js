@@ -1,4 +1,4 @@
-
+import {Link} from "react-router-dom"
 
 export const Heading = () => {
 
@@ -18,14 +18,14 @@ export const Heading = () => {
                 <footer>
                     <ul className="nospace inline pushright">
                         <li>
-                            <a className="btn" href="#">
+                            <Link  className="btn" to="/catalog">
                                 Find your job!
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="btn" href="#">
+                            <Link className="btn" to="#">
                                 Publish your job vacancy!
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </footer>

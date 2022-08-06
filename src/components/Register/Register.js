@@ -1,8 +1,11 @@
 import { useState } from "react"
 import "./Register.css"
+import * as requester from "../../services/requester"
+import { useNavigate } from "react-router-dom"
+
 
 export const Register = () => {
-
+    const navigate = useNavigate()
     const [userData, setUserData] = useState({
         email: '',
         name: '',
@@ -10,6 +13,7 @@ export const Register = () => {
         accountType: 'jobseeker',
         gender: "male"
     })
+    const [error, setError] = useState(false)
 
     const changeHandler = (e) => {
         setUserData((oldstate) => ({
@@ -24,14 +28,24 @@ export const Register = () => {
 
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        
+
+        try {
+            const user = await requester.post(`/users/register`, userData)
+            navigate(`/`)
+            console.log(user);
+
+        } catch (error) {
+            setError(error)
+        }
+
     }
 
     return <div className="registration-body">
         <div className="main-login-block">
             <h1 className="registration-header">Registration</h1>
+            {error ? <p>{`${error.message}`}</p> : ""}
             <form id="login-form" action="/" onSubmit={submitHandler}>
                 <hr />
 

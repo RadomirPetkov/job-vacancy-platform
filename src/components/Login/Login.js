@@ -5,13 +5,13 @@ import { AuthContext } from '../../contexts/authContext'
 import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
+    const { setUser, saveUserToLocalStorage } = useContext(AuthContext)
     const navigate = useNavigate()
     const [userData, setUserData] = useState({
         email: '',
         password: '',
     })
     const [error, setError] = useState(false)
-    const { setUser, saveUserToLocalStorage } = useContext(AuthContext)
 
     const changeHandler = (e) => {
         setUserData((oldstate) => ({

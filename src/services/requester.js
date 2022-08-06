@@ -25,11 +25,13 @@ export const request = async (method, url, data, accessToken) => {
 
 
         const response = await buildRequrest
+        
         let res
         
         
         if (response.status !== 204) { res = await response.json() }
         if (response.status == 403) { throw new Error (`Wrong email or password`) }
+        if (response.status == 409) { throw new Error (`A user with the same email already exists`) }
 
         return res
 
