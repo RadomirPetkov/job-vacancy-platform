@@ -2,10 +2,10 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import "./CreateOffer.css"
 import * as requester from "../../services/requester"
-
+import {useNavigate } from 'react-router-dom'
 
 export const CreateOffer = () => {
-
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     const accessToken = user?.accessToken
     const ownerName = user?.name
@@ -31,8 +31,9 @@ export const CreateOffer = () => {
         e.preventDefault()
         try {
             const response = await requester.post("/data/jobOffers", values, accessToken)
-            console.log(response);
             console.log(`Offer added successfuly`);
+            navigate(`/`)
+
         } catch (error) {
 
         }

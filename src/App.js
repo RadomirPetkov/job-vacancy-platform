@@ -10,6 +10,7 @@ import { useState } from "react"
 import { useSetUser } from "./hooks/useSetUser";
 import { Logout } from "./components/Logout/Logout";
 import { CreateOffer } from "./components/CreateOffer/CreateOffer";
+import { Details } from "./components/Details/Details";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
+          <Route path="/details/:offerId" element={<Details />}></Route>
         </Routes>
 
 

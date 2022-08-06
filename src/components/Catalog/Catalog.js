@@ -4,8 +4,7 @@ import { JobOffer } from './JonOffer/JobOffer';
 export const Catalog = () => {
 
     const { loading, responseData } = useApi.get(`GET`, `/data/jobOffers`)
-    console.log(responseData);
-
+    
     return <div className="wrapper row3">
         <section className="hoc container clear">
 
