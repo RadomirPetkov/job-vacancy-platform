@@ -12,6 +12,7 @@ import { Logout } from "./components/Logout/Logout";
 import { CreateOffer } from "./components/CreateOffer/CreateOffer";
 import { Details } from "./components/Details/Details";
 import { Edit } from "./components/Edit/Edit";
+import { Delete } from "./components/Delete/Delete";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/details/:offerId" element={<Details />}></Route>
           <Route path="/edit/:offerId" element={<Edit />}></Route>
+          <Route path="/delete/:offerId" element={<Delete />}></Route>
         </Routes>
 
 

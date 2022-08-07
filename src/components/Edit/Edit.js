@@ -41,7 +41,6 @@ export const Edit = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(values);
         try {
             const response = await requester.put(`/data/jobOffers/${offerId}`, values, accessToken)
 
