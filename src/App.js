@@ -11,6 +11,7 @@ import { useSetUser } from "./hooks/useSetUser";
 import { Logout } from "./components/Logout/Logout";
 import { CreateOffer } from "./components/CreateOffer/CreateOffer";
 import { Details } from "./components/Details/Details";
+import { Edit } from "./components/Edit/Edit";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/details/:offerId" element={<Details />}></Route>
+          <Route path="/edit/:offerId" element={<Edit />}></Route>
         </Routes>
 
 

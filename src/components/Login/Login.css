@@ -157,3 +157,7 @@ button:hover {
   margin-top: 10%;
   border-radius: 20px;
 }
+
+#reg-link {
+  color: blue
+}

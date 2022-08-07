@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { AuthContext } from "../../contexts/authContext"
 import * as requester from "../../services/requester"
 
@@ -25,7 +25,7 @@ export const Details = () => {
 
     }, [])
 
-      return <div
+    return <div
         className="bgded overlay"
         style={{ backgroundImage: 'url("images/demo/backgrounds/02.png")' }}
     >
@@ -54,12 +54,12 @@ export const Details = () => {
 
                     <footer>
                         {
-                            currentUser == "company" && user?._id == offer?._ownerId && <><a className="btn" href="#">
+                            currentUser == "company" && user?._id == offer?._ownerId && <><Link className="btn" to={`/edit/${offerId}`}>
                                 Edit
-                            </a>
-                                <a className="btn" href="#">
+                            </Link>
+                                <Link className="btn" to={`/delete/${offerId}`} >
                                     Delete
-                                </a></>
+                                </Link></>
 
                         }
                         {currentUser == "jobseeker" && <a className="btn" href="#">

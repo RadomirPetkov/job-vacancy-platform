@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import "./Login.css"
 import * as requester from "../../services/requester"
 import { AuthContext } from '../../contexts/authContext'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const Login = () => {
     const { setUser, saveUserToLocalStorage } = useContext(AuthContext)
@@ -76,7 +76,7 @@ export const Login = () => {
                 <hr />
                 <div className="btn-block">
                     <p className="registration-par">
-                        By clicking Register, you agree on our Privacy Policy for W3Docs
+                        If you don't have an account, you can Register from <Link id='reg-link' to={`/register`}>HERE</Link>
                     </p>
                     <button className="submit-login" type="submit" href="/">
                         Submit

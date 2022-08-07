@@ -23,7 +23,7 @@ export const Heading = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="btn" to="#">
+                            <Link className="btn" to="/create">
                                 Publish your job vacancy!
                             </Link>
                         </li>

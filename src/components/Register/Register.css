@@ -133,4 +133,6 @@
       margin-top: 10%;
     }
 
-      
+    #login-link {
+      color: blue;
+    }

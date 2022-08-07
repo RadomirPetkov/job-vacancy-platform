@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./Register.css"
 import * as requester from "../../services/requester"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 export const Register = () => {
@@ -34,7 +34,6 @@ export const Register = () => {
         try {
             const user = await requester.post(`/users/register`, userData)
             navigate(`/`)
-            console.log(user);
 
         } catch (error) {
             setError(error)
@@ -143,7 +142,7 @@ export const Register = () => {
                 <hr />
                 <div className="btn-block">
                     <p className="registration-par">
-                        By clicking Register, you agree on our Privacy Policy for W3Docs
+                        If you already have an account, you can log in from <Link id="login-link" to={`/login`}>HERE</Link>
                     </p>
                     <button className="submit-login" type="submit" href="/">
                         Submit
