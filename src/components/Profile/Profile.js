@@ -1,7 +1,32 @@
 import "./profile.css"
+import { useContext, useEffect, useState } from "react"
+import { AuthContext } from "../../contexts/authContext"
+import * as requester from "../../services/requester"
+import { useParams } from "react-router-dom"
 
 export const Profile = () => {
 
+    const [userInfo, setUserInfo] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        adress: '',
+        imageUrl: '',
+        additionalInfo: ''
+    })
+    const { userId } = useParams()
+
+    useEffect(() => {
+
+        requester.get(`/data/usersInfo?distinct=${userId}`)
+            .then(res => setUserInfo({ ...Object.assign(userInfo, res[0]) }))
+
+    }, [])
+
+    const submitHandler = async (e) => {
+        e.preventDefault()
+
+    }
     return <>
         <div className="container">
             <div className="main-body">
@@ -16,15 +41,19 @@ export const Profile = () => {
                                         alt="Admin"
                                         className="rounded-circle"
                                         width={150}
+
                                     />
                                     <div className="mt-3">
-                                        <h4>John Doe</h4>
-                                        <p className="text-secondary mb-1">Full Stack Developer</p>
-                                        <p className="text-muted font-size-sm">
-                                            Bay Area, San Francisco, CA
-                                        </p>
-                                        <button className="btn btn-primary">Edit profile</button>
-                                        
+                                        <h4>{userInfo.name}</h4>
+
+                                        {userInfo.additionalInfo != "" ?
+                                            <p className="text-secondary mb-1">{userInfo.additionalInfo}</p>
+                                            :
+                                            <p className="text-secondary mb-1">Add additional info...</p>
+
+                                        }
+                                        <button className="btn btn-primary" onClick={submitHandler}>Edit profile</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -38,37 +67,42 @@ export const Profile = () => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Full Name</h6>
                                     </div>
-                                    <div className="col-sm-9 text-secondary">Kenneth Valdez</div>
+                                    <div className="col-sm-9 text-secondary">{userInfo.name}</div>
                                 </div>
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Email</h6>
                                     </div>
-                                    <div className="col-sm-9 text-secondary">fip@jukmuh.al</div>
+                                    <div className="col-sm-9 text-secondary">{userInfo.email}</div>
                                 </div>
                                 <hr />
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Phone</h6>
                                     </div>
-                                    <div className="col-sm-9 text-secondary">(239) 816-9029</div>
+
+                                    {userInfo.phone != "" ?
+                                        <div className="col-sm-9 text-secondary">(239) 816-9029</div>
+                                        :
+                                        <div className="col-sm-9 text-secondary">...</div>
+                                    }
                                 </div>
                                 <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Mobile</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">(320) 380-4539</div>
-                                </div>
-                                <hr />
+
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Address</h6>
                                     </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        Bay Area, San Francisco, CA
-                                    </div>
+                                    {userInfo.adress != "" ?
+                                        <div className="col-sm-9 text-secondary">
+                                            {userInfo.adress}
+                                        </div>
+                                        :
+                                        <div className="col-sm-9 text-secondary">
+                                            ...
+                                        </div>
+                                    }
                                 </div>
                                 <hr />
                             </div>
@@ -78,32 +112,31 @@ export const Profile = () => {
                                 <div className="card h-100">
                                     <div className="card-body">
                                         <h6 className="d-flex align-items-center mb-3">
-                                            <i className="material-icons text-info mr-2">assignment</i>
-                                            Project Status
+                                            <i className="material-icons text-info mr-2">applied for the follow job offers</i>
                                         </h6>
 
                                         <div className="applications">
                                             <p className="profile-par">
-                                                <a id="profile-span" href="/">Mobile Template</a>
-                                                <button id="btn-profile" >Follow</button>
+                                                <a id="profile-span" href="/">Name of job offer</a>
+                                                <button id="btn-profile" >See offer</button>
                                             </p>
                                         </div>
 
                                         <div className="applications">
                                             <p className="profile-par">
-                                                <a id="profile-span" href="/">Mobile Template</a>
-                                                <button id="btn-profile" >Follow</button>
+                                                <a id="profile-span" href="/">Name of job offer</a>
+                                                <button id="btn-profile" >See offer</button>
                                             </p>
                                         </div>
                                         <div className="applications">
                                             <p className="profile-par">
-                                                <a id="profile-span" href="/">Mobile Template</a>
-                                                <button id="btn-profile" >Follow</button>
+                                                <a id="profile-span" href="/">Name of job offer</a>
+                                                <button id="btn-profile" >See offer</button>
                                             </p>
                                         </div>  <div className="applications">
                                             <p className="profile-par">
-                                                <a id="profile-span" href="/">Mobile Template</a>
-                                                <button id="btn-profile" >Follow</button>
+                                                <a id="profile-span" href="/">Name of job offer</a>
+                                                <button id="btn-profile" >See offer</button>
                                             </p>
                                         </div>
 
