@@ -1,6 +1,10 @@
-import {Link} from "react-router-dom"
+import { useContext } from "react"
+import { Link } from "react-router-dom"
+import { AuthContext } from "../../../contexts/authContext"
 
 export const Heading = () => {
+    const { user } = useContext(AuthContext)
+
 
 
     return <div
@@ -17,16 +21,26 @@ export const Heading = () => {
                 </p>
                 <footer>
                     <ul className="nospace inline pushright">
-                        <li>
-                            <Link  className="btn" to="/catalog">
-                                Find your job!
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="btn" to="/create">
-                                Publish your job vacancy!
-                            </Link>
-                        </li>
+
+                        {user?.accountType == "jobseeker"
+                            ?
+                            <li>
+                                <Link className="btn" to="/catalog">
+                                    Find your job!
+                                </Link>
+                            </li>
+                            :
+                            user?.accountType == "company"
+                                ?
+                                <li>
+                                    <Link className="btn" to="/create">
+                                        Publish your job vacancy!
+                                    </Link>
+                                </li>
+                                :
+                                ""
+                        }
+
                     </ul>
                 </footer>
             </article>
