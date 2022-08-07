@@ -13,6 +13,7 @@ import { CreateOffer } from "./components/CreateOffer/CreateOffer";
 import { Details } from "./components/Details/Details";
 import { Edit } from "./components/Edit/Edit";
 import { Delete } from "./components/Delete/Delete";
+import { Profile } from "./components/Profile/Profile";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/details/:offerId" element={<Details />}></Route>
           <Route path="/edit/:offerId" element={<Edit />}></Route>
           <Route path="/delete/:offerId" element={<Delete />}></Route>
+          <Route path="/profile/:userId" element={<Profile />}></Route>
         </Routes>
 
 
