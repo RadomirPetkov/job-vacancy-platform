@@ -5,7 +5,7 @@ import * as requester from "../../services/requester"
 import { useParams } from "react-router-dom"
 
 export const Profile = () => {
-
+    const [editMode, setEditMode] = useState(false)
     const [userInfo, setUserInfo] = useState({
         name: '',
         email: '',
@@ -15,16 +15,30 @@ export const Profile = () => {
         additionalInfo: ''
     })
     const { userId } = useParams()
+    const { user } = useContext(AuthContext)
+
 
     useEffect(() => {
+        const encodedId = encodeURIComponent(`_ownerId="${userId}"`)
 
-        requester.get(`/data/usersInfo?distinct=${userId}`)
+        requester.get(`/data/usersInfo?where=${encodedId}`)
             .then(res => setUserInfo({ ...Object.assign(userInfo, res[0]) }))
 
     }, [])
 
     const submitHandler = async (e) => {
         e.preventDefault()
+        if (editMode) (
+            requester.put(`/data/usersInfo/${userInfo._id}`, userInfo, user.accessToken)
+        )
+        setEditMode(oldValue => !oldValue)
+    }
+
+    const changeHandler = (e) => {
+        setUserInfo((oldState) => (
+            { ...oldState, [e.target.name]: e.target.value }
+        ))
+
 
     }
     return <>
@@ -46,13 +60,17 @@ export const Profile = () => {
                                     <div className="mt-3">
                                         <h4>{userInfo.name}</h4>
 
-                                        {userInfo.additionalInfo != "" ?
-                                            <p className="text-secondary mb-1">{userInfo.additionalInfo}</p>
+                                        {editMode ?
+                                            <input name="additionalInfo" value={userInfo.additionalInfo} onChange={changeHandler}></input>
                                             :
-                                            <p className="text-secondary mb-1">Add additional info...</p>
+                                            userInfo.additionalInfo != "" ?
+                                                <p className="text-secondary mb-1">{userInfo.additionalInfo}</p>
+                                                :
+                                                <p className="text-secondary mb-1">Add additional info...</p>
 
                                         }
-                                        <button className="btn btn-primary" onClick={submitHandler}>Edit profile</button>
+                                        {!editMode && <button className="btn btn-primary" onClick={submitHandler}>Edit profile</button>}
+                                        {editMode && <button className="btn btn-primary" onClick={submitHandler}>Save changes</button>}
 
                                     </div>
                                 </div>
@@ -60,6 +78,8 @@ export const Profile = () => {
                         </div>
 
                     </div>
+
+
                     <div className="col-md-8">
                         <div className="card mb-3">
                             <div className="card-body">
@@ -67,44 +87,73 @@ export const Profile = () => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Full Name</h6>
                                     </div>
-                                    <div className="col-sm-9 text-secondary">{userInfo.name}</div>
+                                    {editMode ?
+                                        <input name="name" value={userInfo.name} onChange={changeHandler}></input>
+                                        :
+                                        <div className="col-sm-9 text-secondary">{userInfo.name}</div>
+                                    }
+
                                 </div>
                                 <hr />
+
+
+
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Email</h6>
                                     </div>
-                                    <div className="col-sm-9 text-secondary">{userInfo.email}</div>
+                                    {editMode ?
+                                        <input name="email" value={userInfo.email} onChange={changeHandler}></input>
+                                        :
+                                        <div className="col-sm-9 text-secondary">{userInfo.email}</div>
+
+                                    }
                                 </div>
                                 <hr />
+
+
+
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Phone</h6>
                                     </div>
 
-                                    {userInfo.phone != "" ?
-                                        <div className="col-sm-9 text-secondary">(239) 816-9029</div>
+                                    {editMode ?
+                                        <input name="phone" value={userInfo.phone} onChange={changeHandler}></input>
                                         :
-                                        <div className="col-sm-9 text-secondary">...</div>
+                                        userInfo.phone != "" ?
+                                            <div className="col-sm-9 text-secondary">{userInfo.phone}</div>
+                                            :
+                                            <div className="col-sm-9 text-secondary">...</div>
                                     }
                                 </div>
                                 <hr />
+
+
 
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Address</h6>
                                     </div>
-                                    {userInfo.adress != "" ?
-                                        <div className="col-sm-9 text-secondary">
-                                            {userInfo.adress}
-                                        </div>
+
+                                    {editMode ?
+                                        <input name="adress" value={userInfo.adress} onChange={changeHandler}></input>
                                         :
-                                        <div className="col-sm-9 text-secondary">
-                                            ...
-                                        </div>
+                                        userInfo.adress != "" ?
+                                            <div className="col-sm-9 text-secondary">
+                                                {userInfo.adress}
+                                            </div>
+                                            :
+                                            <div className="col-sm-9 text-secondary">
+                                                ...
+                                            </div>
                                     }
+
                                 </div>
                                 <hr />
+
+
+
                             </div>
                         </div>
                         <div className="row gutters-sm">

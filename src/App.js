@@ -5,8 +5,7 @@ import { Catalog } from "./components/Catalog/Catalog";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register.js"
 import { AuthContext } from "./contexts/authContext"
-import { saveUserToLocalStorage } from "./services/authService"
-import { useState } from "react"
+import { saveUserToLocalStorage, saveProfileInfoToLocalStorage } from "./services/authService"
 import { useSetUser } from "./hooks/useSetUser";
 import { Logout } from "./components/Logout/Logout";
 import { CreateOffer } from "./components/CreateOffer/CreateOffer";
@@ -20,7 +19,7 @@ function App() {
   const [user, setUser] = useSetUser()
 
   return (
-    <AuthContext.Provider value={{ user, setUser, saveUserToLocalStorage }}>
+    <AuthContext.Provider value={{ user, setUser, saveUserToLocalStorage, saveProfileInfoToLocalStorage }}>
       <>
         <Navbar />
         <Routes>
