@@ -5,7 +5,7 @@ import * as requester from "../../services/requester"
 
 export const Logout = () => {
     const navigate = useNavigate()
-    const { user, setUser } = useContext(AuthContext)
+    const { user, setUser, setProfileData } = useContext(AuthContext)
     const accessToken = user.accessToken
 
     useEffect(() => {
@@ -13,6 +13,7 @@ export const Logout = () => {
             .then(localStorage.clear())
             .then(console.log(`Logged out successfully`))
         setUser(null)
+        setProfileData(null)
         navigate(`/`)
     }, [])
 

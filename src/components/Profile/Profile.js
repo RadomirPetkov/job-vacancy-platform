@@ -15,7 +15,7 @@ export const Profile = () => {
         additionalInfo: ''
     })
     const { userId } = useParams()
-    const { user } = useContext(AuthContext)
+    const { user, saveProfileInfoToLocalStorage, setProfileData } = useContext(AuthContext)
 
 
     useEffect(() => {
@@ -31,6 +31,8 @@ export const Profile = () => {
         if (editMode) (
             requester.put(`/data/usersInfo/${userInfo._id}`, userInfo, user.accessToken)
         )
+        saveProfileInfoToLocalStorage(userInfo)
+        setProfileData(userInfo)
         setEditMode(oldValue => !oldValue)
     }
 
@@ -51,12 +53,15 @@ export const Profile = () => {
                             <div className="card-body">
                                 <div className="d-flex flex-column align-items-center text-center">
                                     <img
-                                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                        src={userInfo.imageUrl || "https://bootdey.com/img/Content/avatar/avatar7.png"}
                                         alt="Admin"
                                         className="rounded-circle"
                                         width={150}
 
                                     />
+                                    {editMode && <input name="imageUrl" value={userInfo.imageUrl} onChange={changeHandler} placeholder="Insert link to picture"></input>}
+
+
                                     <div className="mt-3">
                                         <h4>{userInfo.name}</h4>
 

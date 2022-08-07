@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/authContext'
 import { Link, useNavigate } from "react-router-dom"
 
 export const Login = () => {
-    const { setUser, saveUserToLocalStorage, saveProfileInfoToLocalStorage } = useContext(AuthContext)
+    const { setUser, saveUserToLocalStorage, saveProfileInfoToLocalStorage, setProfileData} = useContext(AuthContext)
     const navigate = useNavigate()
     const [userData, setUserData] = useState({
         email: '',
@@ -27,9 +27,9 @@ export const Login = () => {
 
             const encodedId = encodeURIComponent(`_ownerId="${user._id}"`)
 
-            const profileData = await requester.get(`/data/usersInfo?where=${encodedId}`)
-            saveProfileInfoToLocalStorage(profileData[0])
-
+            const response = await requester.get(`/data/usersInfo?where=${encodedId}`)
+            saveProfileInfoToLocalStorage(response[0])
+            setProfileData(response[0])
             saveUserToLocalStorage(user)
             setUser(user)
             navigate(`/`)

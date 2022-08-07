@@ -1,10 +1,12 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/authContext'
 
 export const Navbar = () => {
-    const { user } = useContext(AuthContext)
-    
+    const { user, profileData } = useContext(AuthContext)
+
+
+
     return <div className="wrapper row1">
         <header id="header" className="hoc clear">
             <div id="logo" className="fl_left">
@@ -46,8 +48,8 @@ export const Navbar = () => {
                 </ul>
 
             </nav>
-            {user && <><p className='nav-profile'>Hello, {user?.name}!</p>
-                <Link className='nav-profile-pic' to={`/profile/${user._id}`}><img src='https://p.kindpng.com/picc/s/24-248253_user-profile-default-image-png-clipart-png-download.png' alt="" /></Link>
+            {profileData && <><p className='nav-profile'>Hello, {profileData?.name}!</p>
+                <Link className='nav-profile-pic' to={`/profile/${user?._id}`}><img src={profileData?.imageUrl || "https://bootdey.com/img/Content/avatar/avatar7.png"} alt="" /></Link>
             </>}
         </header>
 

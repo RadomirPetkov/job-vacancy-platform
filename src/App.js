@@ -13,13 +13,15 @@ import { Details } from "./components/Details/Details";
 import { Edit } from "./components/Edit/Edit";
 import { Delete } from "./components/Delete/Delete";
 import { Profile } from "./components/Profile/Profile";
+import { useSetProfileData } from "./hooks/useSetProfileData";
 
 
 function App() {
   const [user, setUser] = useSetUser()
+  const [profileData, setProfileData] = useSetProfileData()
 
   return (
-    <AuthContext.Provider value={{ user, setUser, saveUserToLocalStorage, saveProfileInfoToLocalStorage }}>
+    <AuthContext.Provider value={{ user, setUser, saveUserToLocalStorage, profileData, setProfileData, saveProfileInfoToLocalStorage }}>
       <>
         <Navbar />
         <Routes>
