@@ -5,10 +5,14 @@ import * as requester from "../../services/requester"
 
 
 export const Details = () => {
-    const { user } = useContext(AuthContext)
+    const { user, profileData, setProfileData, saveProfileInfoToLocalStorage } = useContext(AuthContext)
     const [currentUser, setCurrentUser] = useState('')
     const { offerId } = useParams()
     const [offer, setOffer] = useState({})
+    const [showApplicants, setShowApplicants] = useState(false)
+    const [applicants, setApplicants] = useState([])
+
+    let hadApllied = false
 
     useEffect(() => {
         if (user) {
@@ -16,7 +20,12 @@ export const Details = () => {
         }
     }, [])
 
+    if (profileData) {
+        if (profileData?.applications) {
 
+            hadApllied = profileData.applications.includes(offerId)
+        } else { profileData.applications = [] }
+    }
 
     useEffect(() => {
         requester.get(`/data/jobOffers/${offerId}`)
@@ -24,6 +33,26 @@ export const Details = () => {
 
 
     }, [])
+
+    const applyHandler = () => {
+        const newProfileData = { ...profileData, "applications": [...profileData.applications, offerId] }
+        requester.put(`/data/usersInfo/${profileData._id}`, newProfileData, user.accessToken)
+            .then(() => {
+                setProfileData(newProfileData)
+                saveProfileInfoToLocalStorage(newProfileData)
+            })
+
+
+    }
+
+    const seeApplicantsHandler = () => {
+        requester.get(`/data/usersInfo`)
+            .then(res => {
+                setApplicants(res.filter(x => x.applications?.includes(offerId)))
+                setShowApplicants(!showApplicants)
+            })
+    }
+
 
     return <div
         className="bgded overlay"
@@ -54,22 +83,39 @@ export const Details = () => {
 
                     <footer>
                         {
-                            currentUser == "company" && user?._id == offer?._ownerId && <><Link className="btn" to={`/edit/${offerId}`}>
-                                Edit
-                            </Link>
+                            currentUser == "company" && user?._id == offer?._ownerId && <>
+                                <Link className="btn" to={`/edit/${offerId}`}>
+                                    Edit
+                                </Link>
                                 <Link className="btn" to={`/delete/${offerId}`} >
                                     Delete
-                                </Link></>
+                                </Link>
+                                <hr />
+                                <button className="details-button" onClick={seeApplicantsHandler} >See applicants</button>
+
+                                {showApplicants ?
+                                    <div className="">
+                                        {applicants.map(x => < p key={x._id} className="applicants">
+                                            <span id="profile-span"> {x.name} </span>
+                                            <Link to={`/profile/${x._ownerId}`}><button id="btn-profile" >See offer</button></Link>
+                                        </p>)
+                                        }
+                                    </div>
+                                    : null}
+                            </>
 
                         }
-                        {currentUser == "jobseeker" && <a className="btn" href="#">
+                        {currentUser == "jobseeker" && !hadApllied && <a className="btn" onClick={applyHandler}>
                             Apply
                         </a>}
+                        {currentUser == "jobseeker" && hadApllied && <p >
+                            You have already applied for this job offer
+                        </p>}
 
                     </footer>
                 </article>
 
             </div>
-        </section>
-    </div>
+        </section >
+    </div >
 }

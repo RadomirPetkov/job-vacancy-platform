@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/authContext"
 import * as requester from "../../services/requester"
 import { useParams } from "react-router-dom"
+import { Applications } from "./Applications/Applications"
 
 export const Profile = () => {
     const [editMode, setEditMode] = useState(false)
@@ -40,7 +41,6 @@ export const Profile = () => {
         setUserInfo((oldState) => (
             { ...oldState, [e.target.name]: e.target.value }
         ))
-
 
     }
     return <>
@@ -165,34 +165,20 @@ export const Profile = () => {
                             <div className="col-md">
                                 <div className="card h-100">
                                     <div className="card-body">
+
                                         <h6 className="d-flex align-items-center mb-3">
-                                            <i className="material-icons text-info mr-2">applied for the follow job offers</i>
+                                            <i className="material-icons text-info mr-2">applied for the following job offers</i>
                                         </h6>
 
-                                        <div className="applications">
-                                            <p className="profile-par">
-                                                <a id="profile-span" href="/">Name of job offer</a>
-                                                <button id="btn-profile" >See offer</button>
-                                            </p>
-                                        </div>
 
-                                        <div className="applications">
-                                            <p className="profile-par">
-                                                <a id="profile-span" href="/">Name of job offer</a>
-                                                <button id="btn-profile" >See offer</button>
-                                            </p>
-                                        </div>
-                                        <div className="applications">
-                                            <p className="profile-par">
-                                                <a id="profile-span" href="/">Name of job offer</a>
-                                                <button id="btn-profile" >See offer</button>
-                                            </p>
-                                        </div>  <div className="applications">
-                                            <p className="profile-par">
-                                                <a id="profile-span" href="/">Name of job offer</a>
-                                                <button id="btn-profile" >See offer</button>
-                                            </p>
-                                        </div>
+                                        {userInfo.applications?.length > 0 ?
+                                            userInfo.applications.map(x => <Applications key={x} offerId={x} />)
+                                            :
+                                            <p>You still haven't applied to any job offers</p>
+                                        }
+
+
+                                        
 
 
 
