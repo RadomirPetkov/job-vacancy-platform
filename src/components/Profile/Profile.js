@@ -41,8 +41,8 @@ export const Profile = () => {
         setUserInfo((oldState) => (
             { ...oldState, [e.target.name]: e.target.value }
         ))
-
     }
+
     return <>
         <div className="container">
             <div className="main-body">
@@ -74,9 +74,11 @@ export const Profile = () => {
                                                 <p className="text-secondary mb-1">Add additional info...</p>
 
                                         }
-                                        {!editMode && <button className="btn btn-primary" onClick={submitHandler}>Edit profile</button>}
-                                        {editMode && <button className="btn btn-primary" onClick={submitHandler}>Save changes</button>}
-
+                                        {user._id == userId ? <>
+                                            {!editMode && <button className="btn btn-primary" onClick={submitHandler}>Edit profile</button>}
+                                            {editMode && <button className="btn btn-primary" onClick={submitHandler}>Save changes</button>}
+                                        </> 
+                                        : ""}
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +180,7 @@ export const Profile = () => {
                                         }
 
 
-                                        
+
 
 
 
