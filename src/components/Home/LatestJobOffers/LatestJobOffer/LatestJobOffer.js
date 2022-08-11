@@ -4,9 +4,9 @@ export const LatestJobOffer = ({ offer }) => {
 
     return <li className="one_third">
         <figure>
-            <a className="imgover offerImg" href="#">
+            <Link className="imgover offerImg" to={`/details/${offer._id}`}>
                 <img src={offer.imageUrl} alt="" />
-            </a>
+            </Link>
             <figcaption>
                 <h5 >Job position: <b>{offer.possition}</b></h5>
                 <h5 >Job desription:</h5>

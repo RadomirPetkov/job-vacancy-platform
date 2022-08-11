@@ -22,7 +22,7 @@ export const Navbar = () => {
                     <li className="active">
                         <Link to="/catalog">Catalog</Link>
                     </li>
-                    {user ? <>
+                    {user.accessToken ? <>
                         {user.accountType == "company" && <li>
                             <Link to="/create">Create offer</Link>
                         </li>}
@@ -48,7 +48,7 @@ export const Navbar = () => {
                 </ul>
 
             </nav>
-            {profileData && <><p className='nav-profile'>Hello, {profileData?.name}!</p>
+            {profileData?.accessToken && <><p className='nav-profile'>Hello, {profileData?.name}!</p>
                 <Link className='nav-profile-pic' to={`/profile/${user?._id}`}><img src={profileData?.imageUrl || "https://bootdey.com/img/Content/avatar/avatar7.png"} alt="" /></Link>
             </>}
         </header>

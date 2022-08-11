@@ -12,8 +12,8 @@ export const Logout = () => {
         requester.logout(accessToken)
             .then(localStorage.clear())
             .then(console.log(`Logged out successfully`))
-        setUser(null)
-        setProfileData(null)
+        setUser({})
+        setProfileData({})
         navigate(`/`)
     }, [])
 

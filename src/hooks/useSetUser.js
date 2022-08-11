@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export const useSetUser = () => {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const localStorageUser = localStorage.getItem(`user`)
 
     useEffect(() => {
