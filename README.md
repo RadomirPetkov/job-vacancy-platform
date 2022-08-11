@@ -1,70 +1,81 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">Job vacancy platform</h3>
 
-## Available Scripts
+## About The Project
 
-In the project directory, you can run:
+This project is created for educational purposes only. The main idea is to create a platform where companies can publish their job offers and every jobseeker can apply for them.
 
-### `npm start`
+### Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* [![React][React.js]][React-url]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Installation
+To get a local copy up and running follow these simple example steps.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/RadomirPetkov/job-vacancy-platform.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run local backend server (this resource is provided by Softuni)
+   ```js
+   node ./server.js
+   ```
+4. Start the app (runs at https://localhost:3000 by default)
+   ```js
+   npm start
+   ```
 
-### `npm run build`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
+### Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The platform has a public part open for all users and a private part that is accessible only by logged in user
 
-### `npm run eject`
+The public part cosists of :
+ - Home page with latest 3 published job offers (at https://localhost:3000)
+ - Catalog page with all the published job offers (at https://localhost:3000/catalog)
+ - Details page containing more information about every job offer (at https://localhost:3000/details/:offerId)
+ - Page for registration of new users that can be a "jobseekers" or "company" (at https://localhost:3000/registration)
+ - Page for login (at https://localhost:3000/login)
+ 
+ The private part consists of :
+ - My profile page for showing and editting additional information for the user (at https://localhost:3000/profile/:profileId)
+ 
+ 1. If the user is a company:
+ - A page for creating a new job offer (at https://localhost:3000/create)
+ - Additional functionalities at the offer details page for editing and deleting every published by the same user offer 
+ 
+ 
+2. If the user is a jobseeker:
+ - Additional functionality to apply for job offers, accessible by the details page of every offer
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contacts
 
-## Learn More
+Radomir Petkov - email: Radomirpetkov@abv.bg
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Acknowledgments
+The backend server is provided by SoftUni Bulgaria. You can find more information about it by this [Documentation] link
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Documentation]: https://github.com/softuni-practice-server/softuni-practice-server
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
