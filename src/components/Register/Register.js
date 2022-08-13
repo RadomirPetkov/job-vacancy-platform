@@ -2,6 +2,7 @@ import { useState } from "react"
 import "./Register.css"
 import * as requester from "../../services/requester"
 import { Link, useNavigate } from "react-router-dom"
+import { checkData } from "../../services/authService"
 
 
 export const Register = () => {
@@ -13,7 +14,12 @@ export const Register = () => {
         accountType: 'jobseeker',
         gender: "male"
     })
-    const [error, setError] = useState(false)
+    const [error, setError] = useState({
+        generalError: false,
+        emailError: false,
+        nameError: false,
+        passwordError: false
+    })
 
     const changeHandler = (e) => {
         setUserData((oldstate) => ({
@@ -30,14 +36,22 @@ export const Register = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
+        const isDataOK = checkData(userData, setError)
 
-        try {
-            const user = await requester.post(`/users/register`, userData)
-            const response = await requester.post(`/data/usersInfo`, user, user.accessToken)
-            navigate(`/`)
 
-        } catch (error) {
-            setError(error)
+        if (isDataOK) {
+
+            try {
+                const user = await requester.post(`/users/register`, userData)
+                const response = await requester.post(`/data/usersInfo`, user, user.accessToken)
+                navigate(`/`)
+
+            } catch (error) {
+                console.log(error);
+                setError(oldData => ({
+                    ...oldData, generalError: error.message
+                }))
+            }
         }
 
     }
@@ -45,7 +59,9 @@ export const Register = () => {
     return <div className="registration-body">
         <div className="main-login-block">
             <h1 className="registration-header">Registration</h1>
-            {error ? <p>{`${error.message}`}</p> : ""}
+
+            {error.generalError ? <p className="error">{`${error.generalError}`}</p> : ""}
+
             <form id="login-form" action="/" onSubmit={submitHandler}>
                 <hr />
 
@@ -76,6 +92,8 @@ export const Register = () => {
                     </label>
                 </div>
                 <hr />
+                {error.emailError ? <p className="error">{`${error.emailError}`}</p> : ""}
+
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-envelope" />
                 </label>
@@ -87,6 +105,9 @@ export const Register = () => {
                     required=""
                     value={userData.email}
                     onChange={changeHandler} />
+
+
+                {error.nameError ? <p className="error">{`${error.nameError}`}</p> : ""}
 
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-user" />
@@ -100,6 +121,9 @@ export const Register = () => {
                     value={userData.name}
                     onChange={changeHandler}
                 />
+
+                {error.passwordError ? <p className="error">{`${error.passwordError}`}</p> : ""}
+
                 <label id="icon" htmlFor="name">
                     <i className="fas fa-unlock-alt" />
                 </label>

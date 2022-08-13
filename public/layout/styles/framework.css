@@ -599,3 +599,9 @@ section {
     text-decoration: underline;
     text-align: left;
 }
+
+.error {
+    color: red;
+    margin-bottom: 0;
+    font-size: 0.8em;
+}
