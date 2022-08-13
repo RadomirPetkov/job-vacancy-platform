@@ -47,7 +47,7 @@ export const Edit = () => {
             navigate(`/details/${offerId}`)
 
         } catch (error) {
-
+            // TODO: Add error handling
         }
 
 

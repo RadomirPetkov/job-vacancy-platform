@@ -44,7 +44,7 @@ export const Register = () => {
             try {
                 const user = await requester.post(`/users/register`, userData)
                 const response = await requester.post(`/data/usersInfo`, user, user.accessToken)
-                navigate(`/`)
+                navigate(`/login`)
 
             } catch (error) {
                 console.log(error);

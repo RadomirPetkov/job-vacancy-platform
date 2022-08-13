@@ -22,30 +22,26 @@ function App() {
 
   return (
     <AuthContext.Provider value={{ user, setUser, saveUserToLocalStorage, profileData, setProfileData, saveProfileInfoToLocalStorage, isAuthenticated: !!user.accessToken || false }}>
-      <>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/catalog" element={<Catalog />}></Route>
-          <Route path="/details/:offerId" element={<Details />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
 
-          <Route element={<RouteGuard />}>
-            <Route path="/create" element={<CreateOffer />}></Route>
-            <Route path="/logout" element={<Logout />}></Route>
-            <Route path="/edit/:offerId" element={<Edit />}></Route>
-            <Route path="/delete/:offerId" element={<Delete />}></Route>
-            <Route path="/profile/:userId" element={<Profile />}></Route>
-          </Route>
-        </Routes>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/catalog" element={<Catalog />}></Route>
+        <Route path="/details/:offerId" element={<Details />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+
+        <Route element={<RouteGuard />}>
+          <Route path="/create" element={<CreateOffer />}></Route>
+          <Route path="/logout" element={<Logout />}></Route>
+          <Route path="/edit/:offerId" element={<Edit />}></Route>
+          <Route path="/delete/:offerId" element={<Delete />}></Route>
+          <Route path="/profile/:userId" element={<Profile />}></Route>
+        </Route>
+
+      </Routes>
 
 
-        {/* JAVASCRIPTS */}
-        <script src="layout/scripts/jquery.min.js"></script>
-        <script src="layout/scripts/jquery.backtotop.js"></script>
-        <script src="layout/scripts/jquery.mobilemenu.js"></script>
-      </>
     </AuthContext.Provider>
   );
 }

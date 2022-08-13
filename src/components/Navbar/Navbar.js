@@ -19,7 +19,7 @@ export const Navbar = () => {
             <nav id="mainav" className="fl_right">
 
                 <ul className="clear">
-                    <li className="active">
+                    <li>
                         <Link to="/catalog">Catalog</Link>
                     </li>
                     {user.accessToken ? <>

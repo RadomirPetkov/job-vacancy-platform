@@ -91,14 +91,15 @@ export const Details = () => {
                                     Delete
                                 </Link>
                                 <hr />
-                                <button className="details-button" onClick={seeApplicantsHandler} >See applicants</button>
+                                <button className="details-button" onClick={seeApplicantsHandler} > {!showApplicants ? "See applicants" : "Hide applicants"}</button>
 
                                 {showApplicants ?
                                     <div className="">
-                                        {applicants.map(x => < p key={x._id} className="applicants">
+                                        {applicants.length > 0 ? applicants.map(x => < p key={x._id} className="applicants">
                                             <span id="profile-span"> {x.name} </span>
-                                            <Link to={`/profile/${x._ownerId}`}><button id="btn-profile" >See offer</button></Link>
+                                            <Link to={`/profile/${x._ownerId}`}><button id="btn-profile" >See user</button></Link>
                                         </p>)
+                                            : <p>There are currently no applicants</p>
                                         }
                                     </div>
                                     : null}
