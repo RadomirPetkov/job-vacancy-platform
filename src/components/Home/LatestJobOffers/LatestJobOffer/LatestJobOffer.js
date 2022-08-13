@@ -10,7 +10,7 @@ export const LatestJobOffer = ({ offer }) => {
             <figcaption>
                 <h5 >Job position: <b>{offer.possition}</b></h5>
                 <h5 >Job desription:</h5>
-                <p>  {offer.summary}</p>
+                <p>  {offer.summary.slice(0, 150)}{offer.summary.length>150 ? "..." : ""}</p>
                 <p>Salary: {offer.salary}</p>
             </figcaption>
             <Link to={`/details/${offer._id}`} className="details-button">Details</Link>

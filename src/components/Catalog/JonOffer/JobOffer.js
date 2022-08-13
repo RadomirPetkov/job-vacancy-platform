@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const JobOffer = ({ offer }) => {
 
@@ -21,7 +21,7 @@ export const JobOffer = ({ offer }) => {
                     Job position: <b>{offer.possition}</b>
                 </h6>
                 <h5 >Job desription:</h5>
-                <p>  {offer.summary}</p>
+                <p>  {offer.summary.slice(0, 150)}{offer.summary.length > 150 ? "..." : ""}</p>
                 <p>Salary: {offer.salary}</p>
                 <footer>
                     <Link to={`/details/${offer._id}`} className="btn" >
